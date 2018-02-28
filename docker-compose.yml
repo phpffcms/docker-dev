@@ -19,4 +19,24 @@ services:
         restart: always
         links:
             - fpm
-    
+            - database
+    database:
+        image: mysql:5.7
+        volumes:
+            - ./db/mysql:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root123
+            MYSQL_DATABASE: ffcms
+            MYSQL_USER: ffcms
+            MYSQL_PASSWORD: ffcms
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        links:
+            - database
+        ports:
+            - "8080:80"
+        environment:
+            PMA_HOST: database
