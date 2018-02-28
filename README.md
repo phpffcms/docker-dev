@@ -2,9 +2,10 @@
 Docker-dev provide ffcms developer environment features via [docker](https://www.docker.com/) container. To use docker-dev box you should install docker.
 
 ## Installation
-Clone this repository
+Clone this repo
 ```bash
 git clone https://github.com/phpffcms/docker-dev.git
+cd docker-dev
 ```
 and run docker-compose:
 ```bash
