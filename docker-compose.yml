@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+    fpm:
+        build:
+            context: ./containers/fpm
+            dockerfile: Dockerfile
+        volumes:
+            - ./www:/www:rw
+        ports:
+            - "9000:9000"
+    nginx:
+        image: nginx:alpine
+        ports:
+            - "8000:80"
+        volumes:
+            - ./www:/www:rw
+            - ./containers/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        restart: always
+        links:
+            - fpm
+    
