@@ -36,6 +36,7 @@ RUN docker-php-ext-install iconv exif opcache pdo pdo_mysql mbstring curl
 RUN docker-php-ext-enable iconv curl gd opcache
 # prepare opcache configurations
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+COPY php.ini /usr/local/etc/php/php.ini
 # install composer 
 RUN EXPECTED_COMPOSER_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig) && \
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
